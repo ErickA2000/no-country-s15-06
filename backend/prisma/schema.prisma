@@ -30,8 +30,8 @@ model User{
   idAccount     String      @unique
   firstName     String
   lastName      String
-  dni           String
-  address       String
+  dni           String?
+  address       String?
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @updatedAt
   role          Role        @relation(fields: [idRole], references: [id])

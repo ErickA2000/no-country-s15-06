@@ -1,0 +1,65 @@
+import { PasswordService } from '@Helpers/password/password.service';
+import { Injectable, OnModuleInit } from '@nestjs/common';
+import { PrismaClient } from '@prisma/client';
+
+@Injectable()
+export class PrismaService extends PrismaClient implements OnModuleInit {
+  constructor(private readonly passwordService: PasswordService) {
+    super();
+  }
+
+  async onModuleInit() {
+    try {
+      await this.$connect();
+      const foundRole = await this.role.count();
+      const foundAccount = await this.account.count();
+
+      //* Create role
+      if (foundRole == 0) {
+        this.role.createMany({
+          data: [
+            {
+              name: 'member',
+              description: 'Miembro del club',
+            },
+            {
+              name: 'admin',
+              description: 'Administrador del club',
+            },
+            {
+              name: 'instructor',
+              description: 'Instructor de actividades',
+            },
+          ],
+        });
+      }
+
+      //* Create account
+      if (foundAccount == 0) {
+        const role = await this.role.findFirst({
+          where: {
+            name: 'admin',
+          },
+        });
+
+        this.account.create({
+          data: {
+            email: 'admin@gmail.com',
+            username: 'admin',
+            password: await this.passwordService.hash('admin1234'),
+            emailVerified: true,
+            user: {
+              create: {
+                firstName: 'Admin',
+                lastName: 'Admin',
+                idRole: role.id,
+              },
+            },
+          },
+        });
+      }
+    } catch (error) {
+      console.error('Initial setup: ', error);
+    }
+  }
+}

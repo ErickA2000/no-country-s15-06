@@ -16,6 +16,24 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
+    "noFallthroughCasesInSwitch": false,
+    "paths": {
+      "@Account/*": ["src/account/*"],
+      "@Activity/*": ["src/activity/*"],
+      "@ActivityDay/*": ["src/activity-day/*"],
+      "@Auth/*": ["src/auth/*"],
+      "@Constants/*": ["src/constants/*"],
+      "@Decorators/*": ["src/decorators/*"],
+      "@Guards/*": ["src/guards/*"],
+      "@Helpers/*": ["src/helpers/*"],
+      "@Interfaces/*": ["src/interfaces/*"],
+      "@Membership/*": ["src/membership/*"],
+      "@Payment/*": ["src/payment/*"],
+      "@PhoneNumber/*": ["src/phone-number/*"],
+      "@Prisma/*": ["src/prisma/*"],
+      "@Role/*": ["src/role/*"],
+      "@Subscription/*": ["src/subscription/*"],
+      "@User/*": ["src/user/*"],
+    }
   }
 }
