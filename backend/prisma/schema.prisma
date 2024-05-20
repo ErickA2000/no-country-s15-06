@@ -1,0 +1,124 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  id                String        @id @default(uuid())
+  email             String        @unique
+  username          String        @unique
+  password          String
+  emailVerified     Boolean
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+  user              User?
+}
+
+model User{
+  id            String      @id @default(uuid())
+  idRole        String
+  idAccount     String      @unique
+  firstName     String
+  lastName      String
+  dni           String
+  address       String
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  role          Role        @relation(fields: [idRole], references: [id])
+  account       Account     @relation(fields: [idAccount], references: [id])
+  number        PhoneNumber[]
+  activity      ActivityXuser[]
+  subscription  Subscription?
+}
+
+model Role{
+  id              String      @id @default(uuid())
+  name            String
+  description     String
+  user            User[]
+}
+
+model PhoneNumber {
+  id            String        @id @default(uuid())
+  idUser        String
+  number        String
+  user          User          @relation(fields: [idUser], references: [id])
+}
+
+model Membership{
+  id                  String        @id @default(uuid())
+  name                String
+  description         String
+  idPlanPrivider      String
+  price               Float
+  activities          Activity[]
+  subscription        Subscription[]
+}
+
+model Activity{
+  id              String          @id @default(uuid())
+  name            String
+  idMembership    String
+  location        String
+  description     String
+  quotas          Int
+  occupiedQuotas  Int
+  membership      Membership      @relation(fields: [idMembership], references: [id])
+  activityDay     ActivityDay[]
+  activityXuser   ActivityXuser[]
+}
+
+model ActivityDay{
+  id              String          @id @default(uuid())
+  idActivity      String
+  day             String
+  hour            String
+  activity        Activity        @relation(fields: [idActivity], references: [id])
+}
+
+model ActivityXuser {
+  id              String        @id @default(uuid())
+  idUser          String
+  idActivity      String
+  state           Boolean
+  user            User          @relation(fields: [idUser], references: [id])
+  activity        Activity      @relation(fields: [idActivity], references: [id])
+}
+
+model Subscription{
+  id                        String        @id @default(uuid())
+  idUser                    String        @unique
+  idMembership              String
+  idSubscriptionProvider    String
+  subscriptionProvider      String
+  startDate                 DateTime      @default(now())
+  nextPayment               DateTime
+  lastPaymnet               DateTime
+  state                     String
+  pay_link                  String
+  user                      User          @relation(fields: [idUser], references: [id])
+  membership                Membership    @relation(fields: [idMembership], references: [id])
+  payment                   Payment[]
+}
+
+model Payment{
+  id              String        @id @default(uuid())
+  idSubscription  String
+  currencyCode    String
+  amount          Float
+  date            DateTime
+  service         String
+  method          String
+  status          String
+  subscription    Subscription  @relation(fields: [idSubscription], references: [id])
+}
