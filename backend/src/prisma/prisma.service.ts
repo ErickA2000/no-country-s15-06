@@ -1,4 +1,5 @@
 import { PasswordService } from '@Helpers/password/password.service';
+import { PaginateResponse } from '@Interfaces/global.interface';
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { PrismaClient } from '@prisma/client';
 
@@ -61,5 +62,29 @@ export class PrismaService extends PrismaClient implements OnModuleInit {
     } catch (error) {
       console.error('Initial setup: ', error);
     }
+  }
+
+  paginate<T>(
+    docs: T[],
+    complement: {
+      page: number;
+      limit: number;
+      count: number;
+      pages: number;
+      length: number;
+    },
+  ): PaginateResponse<T> {
+    const { page, limit, count, pages, length } = complement;
+    return {
+      docs,
+      totalDocs: count,
+      totalPages: pages,
+      limit,
+      page,
+      hasPrevPage: page == 1 || length == 0 ? false : true,
+      hasNextPage: pages > page ? true : false,
+      nextPage: page == pages || length == 0 ? null : page + 1,
+      prevPage: page <= 1 || length == 0 ? null : page - 1,
+    };
   }
 }

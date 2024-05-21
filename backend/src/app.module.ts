@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PrismaModule } from './prisma/prisma.module';
@@ -12,9 +13,27 @@ import { ActivityDayModule } from './activity-day/activity-day.module';
 import { MembershipModule } from './membership/membership.module';
 import { SubscriptionModule } from './subscription/subscription.module';
 import { PaymentModule } from './payment/payment.module';
+import { configLoad } from './env-schema';
+import { envSchema } from './config-load';
 
 @Module({
-  imports: [PrismaModule, RoleModule, AccountModule, AuthModule, UserModule, PhoneNumberModule, ActivityModule, ActivityDayModule, MembershipModule, SubscriptionModule, PaymentModule],
+  imports: [
+    PrismaModule,
+    RoleModule,
+    AccountModule,
+    AuthModule,
+    UserModule,
+    PhoneNumberModule,
+    ActivityModule,
+    ActivityDayModule,
+    MembershipModule,
+    SubscriptionModule,
+    PaymentModule,
+    ConfigModule.forRoot({
+      load: [configLoad],
+      validationSchema: envSchema,
+    }),
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
