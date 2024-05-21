@@ -22,6 +22,9 @@ model Account {
   createdAt         DateTime      @default(now())
   updatedAt         DateTime      @updatedAt
   user              User?
+
+  @@index([email])
+  @@index([username])
 }
 
 model User{
@@ -36,7 +39,7 @@ model User{
   updatedAt     DateTime    @updatedAt
   role          Role        @relation(fields: [idRole], references: [id])
   account       Account     @relation(fields: [idAccount], references: [id])
-  number        PhoneNumber[]
+  phoneNumber   PhoneNumber[]
   activity      ActivityXuser[]
   subscription  Subscription?
 }
