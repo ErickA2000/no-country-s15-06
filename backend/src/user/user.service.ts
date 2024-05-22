@@ -2,6 +2,7 @@ import { PaginateResponse } from '@Interfaces/global.interface';
 import { PrismaService } from '@Prisma/prisma.service';
 import { Injectable } from '@nestjs/common';
 import { User } from '@prisma/client';
+import { UpdateUserDTO } from './dto/user.dto';
 
 @Injectable()
 export class UserService {
@@ -90,7 +91,7 @@ export class UserService {
     });
   }
 
-  async update(id: string, data: any): Promise<User> {
+  async update(id: string, data: UpdateUserDTO): Promise<User> {
     return this.prisma.user.update({
       where: {
         id,
