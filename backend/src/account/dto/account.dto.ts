@@ -49,6 +49,8 @@ export class AccountCreateDTO {
   @IsOptional()
   @MinLength(4)
   address?: string;
+
+  roleName: string;
 }
 
 export class AccountUpdateDTO {

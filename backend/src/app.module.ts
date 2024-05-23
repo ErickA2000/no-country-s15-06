@@ -13,8 +13,12 @@ import { ActivityDayModule } from './activity-day/activity-day.module';
 import { MembershipModule } from './membership/membership.module';
 import { SubscriptionModule } from './subscription/subscription.module';
 import { PaymentModule } from './payment/payment.module';
-import { configLoad } from './env-schema';
-import { envSchema } from './config-load';
+import { envSchema } from './env-schema';
+import { configLoad } from './config-load';
+import { APP_GUARD } from '@nestjs/core';
+import { RoleGuard } from '@Guards/role/role.guard';
+import { GetHtmlService } from './helpers/get-html/get-html.service';
+import { MailService } from './helpers/mail/mail.service';
 
 @Module({
   imports: [
@@ -35,6 +39,15 @@ import { envSchema } from './config-load';
     }),
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    RoleGuard,
+    {
+      provide: APP_GUARD,
+      useExisting: RoleGuard,
+    },
+    GetHtmlService,
+    MailService,
+  ],
 })
 export class AppModule {}

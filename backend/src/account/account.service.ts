@@ -54,7 +54,12 @@ export class AccountService {
   }
 
   async create(data: AccountCreateDTO): Promise<Account> {
-    const role = await this.roleService.findByName('member');
+    const role = await this.roleService.findByName(data.roleName);
+
+    if (role === null) {
+      throw new Error('Role not found');
+    }
+
     return this.prisma.account.create({
       data: {
         email: data.email,
@@ -70,6 +75,9 @@ export class AccountService {
             address: data.address,
           },
         },
+      },
+      include: {
+        user: true,
       },
     });
   }

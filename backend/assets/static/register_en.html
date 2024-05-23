@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        
+        .main{
+            height: 100vh;
+            background-color: #f1f1f1;
+        }
+
+        .container {
+            display: grid;
+            text-align: center;
+        }
+
+        .title{
+            text-decoration: none;
+            color: black !important;
+            font-size: 2rem;
+        }
+
+        .content{
+            width: 40%;
+            margin: 0 auto;
+            background-color: white;
+            padding: 2rem;
+            display: grid;
+        }
+        
+
+        .content p{
+            font-size: large;
+            text-align: center;
+        }
+
+        .btn{
+            background-color: aqua;
+            text-decoration: none;
+            border: none;
+            color: black;
+            padding: 1rem;
+            width: 10rem;
+            border-radius: 2rem;
+        }
+
+        .link-confirm{
+            text-decoration: none;
+            color: black;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="container">
+            <section>
+                <a href="http://miraiisoft.com" target="_blank" rel="noopener noreferrer" class="title">
+                    <h1>MY CLUB</h1>
+                </a>
+            </section>
+    
+            <section class="content">
+                <h2>Hello, {name}</h2>
+                <p>Confirm the creation of the account. You have one hour to complete the verification.</p>
+
+                <a href="{url}" target="_blank" class="link-confirm">
+                    <div class="btn">Confirm</div>
+                </a>
+                
+            </section>
+
+        </div>
+    </div>
+</body>
+</html>

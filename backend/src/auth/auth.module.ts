@@ -4,6 +4,11 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { AuthService } from './auth.service';
+import { PasswordService } from '@Helpers/password/password.service';
+import { LoginController } from './v1/login/login.controller';
+import { RegisterController } from './v1/register/register.controller';
+import { MailService } from '@Helpers/mail/mail.service';
+import { GetHtmlService } from '@Helpers/get-html/get-html.service';
 
 @Module({
   imports: [
@@ -18,7 +23,9 @@ import { AuthService } from './auth.service';
         secret: config.get('jwt_secret'),
       }),
     }),
+    ConfigModule,
   ],
-  providers: [AuthService],
+  providers: [AuthService, PasswordService, MailService, GetHtmlService],
+  controllers: [LoginController, RegisterController],
 })
 export class AuthModule {}

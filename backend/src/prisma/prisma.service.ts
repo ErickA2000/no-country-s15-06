@@ -17,7 +17,7 @@ export class PrismaService extends PrismaClient implements OnModuleInit {
 
       //* Create role
       if (foundRole == 0) {
-        this.role.createMany({
+        await this.role.createMany({
           data: [
             {
               name: 'member',
@@ -43,7 +43,7 @@ export class PrismaService extends PrismaClient implements OnModuleInit {
           },
         });
 
-        this.account.create({
+        await this.account.create({
           data: {
             email: 'admin@gmail.com',
             username: 'admin',
