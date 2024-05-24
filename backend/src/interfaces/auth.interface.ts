@@ -42,3 +42,9 @@ export interface ResponseGoogleStrategy {
   email_verified: boolean;
   language_code: string;
 }
+
+export interface PayloadJwt {
+  sub: string;
+  user: string;
+  role: string;
+}

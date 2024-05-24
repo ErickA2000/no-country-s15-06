@@ -53,6 +53,14 @@ export class AccountService {
     });
   }
 
+  async findById(id: string): Promise<Account> {
+    return this.prisma.account.findUnique({
+      where: {
+        id,
+      },
+    });
+  }
+
   async create(data: AccountCreateDTO): Promise<Account> {
     const role = await this.roleService.findByName(data.roleName);
 

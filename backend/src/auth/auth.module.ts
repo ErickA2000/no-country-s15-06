@@ -9,6 +9,7 @@ import { LoginController } from './v1/login/login.controller';
 import { RegisterController } from './v1/register/register.controller';
 import { MailService } from '@Helpers/mail/mail.service';
 import { GetHtmlService } from '@Helpers/get-html/get-html.service';
+import { ConfirmController } from './v1/confirm/confirm.controller';
 
 @Module({
   imports: [
@@ -26,6 +27,6 @@ import { GetHtmlService } from '@Helpers/get-html/get-html.service';
     ConfigModule,
   ],
   providers: [AuthService, PasswordService, MailService, GetHtmlService],
-  controllers: [LoginController, RegisterController],
+  controllers: [LoginController, RegisterController, ConfirmController],
 })
 export class AuthModule {}
