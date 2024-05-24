@@ -36,8 +36,8 @@ export interface Photo {
 
 export interface ResponseGoogleStrategy {
   accessToken: string;
-  first_name: string;
-  last_name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   email_verified: boolean;
   language_code: string;

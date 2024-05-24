@@ -19,6 +19,7 @@ import { APP_GUARD } from '@nestjs/core';
 import { RoleGuard } from '@Guards/role/role.guard';
 import { GetHtmlService } from './helpers/get-html/get-html.service';
 import { MailService } from './helpers/mail/mail.service';
+import { JwtAuthGuard } from '@Guards/jwt-auth/jwt-auth.guard';
 
 @Module({
   imports: [
@@ -45,6 +46,11 @@ import { MailService } from './helpers/mail/mail.service';
     {
       provide: APP_GUARD,
       useExisting: RoleGuard,
+    },
+    JwtAuthGuard,
+    {
+      provide: APP_GUARD,
+      useExisting: JwtAuthGuard,
     },
     GetHtmlService,
     MailService,

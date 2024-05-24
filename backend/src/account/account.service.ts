@@ -61,7 +61,7 @@ export class AccountService {
     });
   }
 
-  async create(data: AccountCreateDTO): Promise<Account> {
+  async create(data: AccountCreateDTO): Promise<AccountWithUser> {
     const role = await this.roleService.findByName(data.roleName);
 
     if (role === null) {
@@ -72,7 +72,10 @@ export class AccountService {
       data: {
         email: data.email,
         username: data.username,
-        password: await this.passwordService.hash(data.password),
+        password:
+          data.password == null || data.password == undefined
+            ? null
+            : await this.passwordService.hash(data.password),
         emailVerified: data.emailVerified,
         user: {
           create: {
@@ -85,7 +88,11 @@ export class AccountService {
         },
       },
       include: {
-        user: true,
+        user: {
+          include: {
+            role: true,
+          },
+        },
       },
     });
   }

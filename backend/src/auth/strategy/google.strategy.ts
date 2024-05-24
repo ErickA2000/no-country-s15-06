@@ -8,12 +8,12 @@ import { Strategy, VerifyCallback } from 'passport-google-oauth20';
 export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
   constructor(private readonly configService: ConfigService) {
     const google = configService.get('google');
+
     super({
       clientID: google['clientId'],
       clientSecret: google['secret'],
       //* Cambiar el url /api/v1 cuando se este utilizando con el frontend
-      callbackURL:
-        configService.get('client_url') + '/api/v1/auth/google/callback',
+      callbackURL: configService.get('client_url') + '/auth/google/callback',
       scope: ['email', 'profile'],
     });
   }
@@ -25,6 +25,7 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
     done: VerifyCallback,
   ) {
     const user = {
+      accessToken,
       firstName: profile._json.given_name,
       lastName: profile._json.family_name,
       email: profile._json.email,
