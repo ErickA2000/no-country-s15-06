@@ -13,6 +13,7 @@ import { ConfirmController } from './v1/confirm/confirm.controller';
 import { LocalStrategy } from './strategy/local.strategy';
 import { JwtStrategy } from './strategy/jwt.strategy';
 import { GoogleStrategy } from './strategy/google.strategy';
+import { ResetPasswordController } from './v1/reset-password/reset-password.controller';
 
 @Module({
   imports: [
@@ -38,6 +39,6 @@ import { GoogleStrategy } from './strategy/google.strategy';
     JwtStrategy,
     GoogleStrategy,
   ],
-  controllers: [LoginController, RegisterController, ConfirmController],
+  controllers: [LoginController, RegisterController, ConfirmController, ResetPasswordController],
 })
 export class AuthModule {}

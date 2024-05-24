@@ -39,7 +39,7 @@ export interface ResponseGoogleStrategy {
   firstName: string;
   lastName: string;
   email: string;
-  email_verified: boolean;
+  emailVerified: boolean;
   language_code: string;
 }
 

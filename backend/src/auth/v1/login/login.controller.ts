@@ -93,7 +93,7 @@ export class LoginController {
           firstName: userInfo.firstName,
           lastName: userInfo.lastName,
           roleName: 'member',
-          emailVerified: userInfo.email_verified,
+          emailVerified: userInfo.emailVerified,
         });
 
         const token = await this.authService.login(

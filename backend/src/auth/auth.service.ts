@@ -21,7 +21,7 @@ export class AuthService {
       };
     }
 
-    const comparePassword = this.passwordService.compare(
+    const comparePassword = await this.passwordService.compare(
       pass,
       account.password,
     );

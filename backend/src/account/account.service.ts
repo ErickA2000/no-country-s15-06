@@ -97,16 +97,51 @@ export class AccountService {
     });
   }
 
-  async update(id: string, data: AccountUpdateDTO): Promise<Account> {
+  async update(
+    id: string,
+    data: AccountUpdateDTO,
+    resetPassword = false,
+  ): Promise<Account> {
+    const { password, currentPassword, ...req } = data;
+
+    if (!resetPassword) {
+      if ((password && !currentPassword) || (!password && currentPassword)) {
+        throw new Error('current or new password has not been sent');
+      }
+    }
+
+    let hash: string;
+    if (password && currentPassword) {
+      if (password === currentPassword) throw new Error('matching passwords');
+      const account = await this.prisma.account.findUnique({
+        where: {
+          id,
+        },
+      });
+
+      const comparePassword = await this.passwordService.compare(
+        currentPassword,
+        account.password,
+      );
+
+      if (!comparePassword) throw new Error('incorrect current password');
+
+      hash = await this.passwordService.hash(password);
+    }
+
+    if (resetPassword) {
+      hash = await this.passwordService.hash(password);
+    }
+
     return this.prisma.account.update({
       where: {
         id,
       },
       data: {
-        email: data.email,
-        emailVerified: data.emailVerified,
-        username: data.username,
-        password: data.password,
+        email: req.email,
+        emailVerified: req.emailVerified,
+        username: req.username,
+        password: hash,
       },
     });
   }

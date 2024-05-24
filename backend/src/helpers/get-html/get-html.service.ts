@@ -5,13 +5,26 @@ import { join } from 'path';
 
 @Injectable()
 export class GetHtmlService {
-  async get(html: 'register', lang = 'en', data?: Data): Promise<string> {
-    const path = this.resolvePath(`${html}_${lang}.html`);
-    const htmlContent = await readFile(path, 'utf8');
+  async get(
+    html: 'register' | 'reset-password',
+    lang = 'en',
+    data?: Data,
+  ): Promise<string> {
+    try {
+      const path = this.resolvePath(`${html}_${lang}.html`);
+      const htmlContent = await readFile(path, 'utf8');
 
-    if (data === undefined) return htmlContent;
+      if (data === undefined) return htmlContent;
 
-    return this.changeKey(htmlContent, data);
+      return this.changeKey(htmlContent, data);
+    } catch (error) {
+      const path = this.resolvePath(`${html}_en.html`);
+      const htmlContent = await readFile(path, 'utf8');
+
+      if (data === undefined) return htmlContent;
+
+      return this.changeKey(htmlContent, data);
+    }
   }
   private changeKey(html: string, data: Data): string {
     Object.keys(data).forEach((key) => {
