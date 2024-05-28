@@ -26,7 +26,27 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+## Pre-requisites
+
+- Have <a href="http://nodejs.org" target="_blank">Node.js</a> version 18 or later installed
+
+- Have <a href="https://pnpm.io/installation" target="_blank">pnpm</a> enabled.
+
+### Via Docker
+
+- Have <a href="https://www.docker.com/" target="_blank">Docker</a> installed.
+
+In case of using docker the above steps can be omitted.
+
 ## Installation
+
+Enter the backend folder.
+
+```bash
+$ cd backend
+```
+
+Install dependencies
 
 ```bash
 $ pnpm install
@@ -44,6 +64,22 @@ $ pnpm run start:dev
 # production mode
 $ pnpm run start:prod
 ```
+
+## Running the app with Docker
+
+- Generate image
+
+```bash
+$ docker build -t <nameImage>:<tag> .
+```
+
+- Run container
+
+```bash
+$ docker run -d --env-file <envFile ".env"> -p hostPort:containerPort <nameImage>:<tag>
+```
+
+Note: For more about environment variables check the .env.example
 
 ## Test
 
