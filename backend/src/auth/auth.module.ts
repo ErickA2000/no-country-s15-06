@@ -39,6 +39,11 @@ import { ResetPasswordController } from './v1/reset-password/reset-password.cont
     JwtStrategy,
     GoogleStrategy,
   ],
-  controllers: [LoginController, RegisterController, ConfirmController, ResetPasswordController],
+  controllers: [
+    LoginController,
+    RegisterController,
+    ConfirmController,
+    ResetPasswordController,
+  ],
 })
 export class AuthModule {}
