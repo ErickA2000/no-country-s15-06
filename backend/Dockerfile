@@ -23,6 +23,7 @@ COPY --from=build /app/package*.json ./
 COPY --from=build /app/dist ./dist
 COPY --from=build /app/prisma ./prisma
 
+RUN npx prisma migrate dev --name initial
 RUN npx prisma generate
 RUN npm install --omit=dev
 
