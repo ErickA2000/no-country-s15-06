@@ -23,7 +23,11 @@ export class UserService {
         },
         phoneNumber: true,
         activity: true,
-        role: true,
+        role: {
+          select: {
+            name: true,
+          },
+        },
       },
     });
   }
@@ -55,7 +59,11 @@ export class UserService {
         },
         phoneNumber: true,
         activity: true,
-        role: true,
+        role: {
+          select: {
+            name: true,
+          },
+        },
       },
     });
 
@@ -86,7 +94,11 @@ export class UserService {
         },
         phoneNumber: true,
         activity: true,
-        role: true,
+        role: {
+          select: {
+            name: true,
+          },
+        },
       },
     });
   }
