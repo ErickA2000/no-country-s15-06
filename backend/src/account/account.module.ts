@@ -8,11 +8,12 @@ import { CreateController } from './v1/create/create.controller';
 import { GetHtmlService } from '@Helpers/get-html/get-html.service';
 import { MailService } from '@Helpers/mail/mail.service';
 import { ConfigModule } from '@nestjs/config';
+import { DeleteController } from './v1/delete/delete.controller';
 
 @Module({
   providers: [AccountService, PasswordService, GetHtmlService, MailService],
   imports: [RoleModule, PrismaModule, ConfigModule],
   exports: [AccountService],
-  controllers: [UpdateController, CreateController],
+  controllers: [UpdateController, CreateController, DeleteController],
 })
 export class AccountModule {}
