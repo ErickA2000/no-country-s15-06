@@ -76,8 +76,47 @@ export class AccountUpdateDTO {
 
   @IsOptional()
   @IsString()
-  @IsPassword()
   currentPassword?: string;
 
   emailVerified?: boolean;
+}
+
+export class AccountCreateByAdminDTO {
+  @IsEmail()
+  @IsNotEmpty()
+  email: string;
+
+  emailVerified?: boolean;
+
+  @IsString()
+  @MinLength(4)
+  @MaxLength(10)
+  @IsNotEmpty()
+  username: string;
+
+  password?: string;
+
+  @IsString()
+  @MinLength(3)
+  firstName: string;
+
+  @IsString()
+  @IsOptional()
+  @MinLength(3)
+  lastName?: string;
+
+  @IsString()
+  @IsOptional()
+  @MinLength(7)
+  @MaxLength(9)
+  dni?: string;
+
+  @IsString()
+  @IsOptional()
+  @MinLength(4)
+  address?: string;
+
+  @IsNotEmpty()
+  @IsString()
+  roleName: string;
 }

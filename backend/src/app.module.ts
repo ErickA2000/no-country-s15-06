@@ -42,15 +42,15 @@ import { JwtAuthGuard } from '@Guards/jwt-auth/jwt-auth.guard';
   controllers: [AppController],
   providers: [
     AppService,
-    RoleGuard,
-    {
-      provide: APP_GUARD,
-      useExisting: RoleGuard,
-    },
     JwtAuthGuard,
     {
       provide: APP_GUARD,
       useExisting: JwtAuthGuard,
+    },
+    RoleGuard,
+    {
+      provide: APP_GUARD,
+      useExisting: RoleGuard,
     },
     GetHtmlService,
     MailService,

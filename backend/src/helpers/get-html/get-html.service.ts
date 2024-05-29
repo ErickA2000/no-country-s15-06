@@ -6,7 +6,7 @@ import { join } from 'path';
 @Injectable()
 export class GetHtmlService {
   async get(
-    html: 'register' | 'reset-password',
+    html: 'register' | 'reset-password' | 'register-by-admin',
     lang = 'en',
     data?: Data,
   ): Promise<string> {
