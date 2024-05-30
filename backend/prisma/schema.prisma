@@ -62,8 +62,10 @@ model Membership{
   id                  String        @id @default(uuid())
   name                String
   description         String
-  idPlanPrivider      String
+  idPlanProvider      String
   price               Float
+  numberPeople        Int
+  paymentFrequency    String
   activities          Activity[]
   subscription        Subscription[]
 }
