@@ -126,3 +126,41 @@ export interface LastPayment {
   amount: ShippingAmount;
   time: Date;
 }
+
+//* Response cancel subscription from paypal
+export interface PaypalCancelledSubscription {
+  id: string;
+  create_time: string;
+  event_type: string;
+  event_version: string;
+  resource_type: string;
+  resource_version: string;
+  summary: string;
+  resource: Resource;
+  links: Link[];
+}
+
+export interface Resource {
+  id: string;
+  status: string;
+  status_update_time: Date;
+  plan_id: string;
+  start_time: Date;
+  quantity: string;
+  shipping_amount: ShippingAmount;
+  subscriber: Subscriber;
+  auto_renewal: boolean;
+  billing_info: BillingInfo2;
+  create_time: Date;
+  update_time: Date;
+  links: Link[];
+}
+
+export interface BillingInfo2 {
+  outstanding_balance: ShippingAmount;
+  cycle_executions: CycleExecution[];
+  last_payment: LastPayment;
+  next_billing_time: Date;
+  final_payment_time: Date;
+  failed_payments_count: number;
+}

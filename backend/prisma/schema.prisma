@@ -108,7 +108,7 @@ model Subscription{
   subscriptionProvider      String
   startDate                 DateTime      @default(now())
   nextPayment               DateTime?
-  lastPaymnet               DateTime?
+  lastPayment               DateTime?
   state                     String
   pay_link                  String?
   user                      User          @relation(fields: [idUser], references: [id])

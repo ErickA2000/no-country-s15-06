@@ -1,6 +1,7 @@
 import { PaymentService } from '@Constants/enums';
 import { PRINCIPAL_PATHS } from '@Constants/routes';
 import { Roles } from '@Decorators/role.decorator';
+import { FullSubscription } from '@Interfaces/subscription.interface';
 import { PaymentDTO } from '@Payment/dto/payment.dto';
 import { PaypalError } from '@Payment/errors/paypal';
 import { PaypalService } from '@Payment/services/paypal/paypal.service';
@@ -28,8 +29,27 @@ export class CreateSubscriptionController {
 
   @Roles('member')
   @Post()
-  createSubscription(@Body() data: PaymentDTO, @Req() req: Request) {
+  async createSubscription(@Body() data: PaymentDTO, @Req() req: Request) {
     if (data.service === PaymentService.PAYPAL) {
+      let foundSubscription: FullSubscription;
+      try {
+        foundSubscription = await this.subscriptionService.findByIdUser(
+          req.user['user'],
+        );
+
+        if (foundSubscription && foundSubscription.pay_link != null) {
+          return {
+            success: true,
+            data: foundSubscription,
+          };
+        }
+      } catch (error) {
+        throw new InternalServerErrorException({
+          success: false,
+          message: error.message,
+        });
+      }
+
       return this.paypalService.createSubscription(data).pipe(
         map(async (res) => {
           if (res instanceof PaypalError) {
@@ -47,9 +67,6 @@ export class CreateSubscriptionController {
           }
 
           try {
-            const foundSubscription =
-              await this.subscriptionService.findByIdUser(req.user['user']);
-
             if (foundSubscription) {
               const updatedSubscription = await this.subscriptionService.update(
                 foundSubscription.id,

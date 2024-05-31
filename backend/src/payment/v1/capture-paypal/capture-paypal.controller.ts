@@ -66,7 +66,7 @@ export class CapturePaypalController {
             date: res.start_time,
             method: 'paypal',
             service: 'paypal',
-            status: res.status == 'ACTIVE' ? 'active' : 'pending',
+            status: res.status == 'ACTIVE' ? 'completed' : 'pending',
           });
 
           return {

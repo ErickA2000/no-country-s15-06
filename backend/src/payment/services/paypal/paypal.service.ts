@@ -22,7 +22,6 @@ export class PaypalService {
   ) {}
 
   private client_url = this.configService.get('client_url');
-  private backend_url = this.configService.get('backend_url');
   private paypal_api = this.configService.get('paypal')['api'];
 
   createSubscription(
@@ -35,7 +34,7 @@ export class PaypalService {
         user_action: 'SUBSCRIBE_NOW',
         shipping_preference: 'SET_PROVIDED_ADDRESS',
         return_url: `${this.client_url}/capture/paypal`,
-        cancel_url: `${this.backend_url}/subscriptions/cancel`,
+        cancel_url: `${this.client_url}/subscriptions/cancel`,
       },
     };
 
