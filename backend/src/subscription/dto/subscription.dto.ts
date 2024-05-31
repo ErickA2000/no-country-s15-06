@@ -1,3 +1,5 @@
+import { IsString } from 'class-validator';
+
 export class SubscriptionCreatedDTO {
   idUser: string;
   idMembership: string;
@@ -20,4 +22,9 @@ export class SubscriptionUpdatedDTO {
   lastPayment?: Date;
   state?: string;
   pay_link?: string;
+}
+
+export class CancelSubscriptionDTO {
+  @IsString()
+  reason: string;
 }

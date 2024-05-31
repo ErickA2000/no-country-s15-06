@@ -98,6 +98,16 @@ export class SubscriptionService {
     });
   }
 
+  async findOneByIdSubscriptionProvider(
+    idSubscriptionProvider: string,
+  ): Promise<Subscription> {
+    return this.prisma.subscription.findFirst({
+      where: {
+        idSubscriptionProvider,
+      },
+    });
+  }
+
   async add(data: SubscriptionCreatedDTO): Promise<Subscription> {
     return this.prisma.subscription.create({
       data,

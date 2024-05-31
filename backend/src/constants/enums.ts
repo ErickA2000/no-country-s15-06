@@ -4,3 +4,7 @@ export enum PaymentFrequency {
   MONTHLY = 'monthly',
   YEARLY = 'yearly',
 }
+
+export enum PaymentService {
+  PAYPAL = 'paypal',
+}

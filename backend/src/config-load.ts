@@ -13,6 +13,12 @@ export const configLoad = () => {
       password: process.env.EMAIL_PASSWORD,
     },
     client_url: process.env.CLIENT_URL,
+    backend_url: process.env.BACKEND_URL,
+    paypal: {
+      client: process.env.PAYPAL_CLIENT,
+      secret: process.env.PAYPAL_SECRET,
+      api: process.env.PAYPAL_API,
+    },
   };
 };
 

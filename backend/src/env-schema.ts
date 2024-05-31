@@ -10,4 +10,8 @@ export const envSchema = joi.object({
   EMAIL_ADDRESS: joi.string().required(),
   EMAIL_PASSWORD: joi.string().required(),
   CLIENT_URL: joi.string().required(),
+  BACKEND_URL: joi.string().required(),
+  PAYPAL_CLIENT: joi.string().required(),
+  PAYPAL_SECRET: joi.string().required(),
+  PAYPAL_API: joi.string().required(),
 });
