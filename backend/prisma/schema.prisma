@@ -62,8 +62,10 @@ model Membership{
   id                  String        @id @default(uuid())
   name                String
   description         String
-  idPlanPrivider      String
+  idPlanProvider      String
   price               Float
+  numberPeople        Int
+  paymentFrequency    String
   activities          Activity[]
   subscription        Subscription[]
 }
@@ -105,10 +107,10 @@ model Subscription{
   idSubscriptionProvider    String
   subscriptionProvider      String
   startDate                 DateTime      @default(now())
-  nextPayment               DateTime
-  lastPaymnet               DateTime
+  nextPayment               DateTime?
+  lastPayment               DateTime?
   state                     String
-  pay_link                  String
+  pay_link                  String?
   user                      User          @relation(fields: [idUser], references: [id])
   membership                Membership    @relation(fields: [idMembership], references: [id])
   payment                   Payment[]
