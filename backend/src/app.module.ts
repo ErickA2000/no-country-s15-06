@@ -20,6 +20,7 @@ import { RoleGuard } from '@Guards/role/role.guard';
 import { GetHtmlService } from './helpers/get-html/get-html.service';
 import { MailService } from './helpers/mail/mail.service';
 import { JwtAuthGuard } from '@Guards/jwt-auth/jwt-auth.guard';
+import { ActivityXUserModule } from './activity-x-user/activity-x-user.module';
 
 @Module({
   imports: [
@@ -38,6 +39,7 @@ import { JwtAuthGuard } from '@Guards/jwt-auth/jwt-auth.guard';
       load: [configLoad],
       validationSchema: envSchema,
     }),
+    ActivityXUserModule,
   ],
   controllers: [AppController],
   providers: [

@@ -92,15 +92,18 @@ model ActivityDay{
   day             String
   hour            String
   activity        Activity        @relation(fields: [idActivity], references: [id])
+  activityXuser   ActivityXuser[]
 }
 
 model ActivityXuser {
   id              String        @id @default(uuid())
   idUser          String
   idActivity      String
+  idActivityDay   String
   state           Boolean
   user            User          @relation(fields: [idUser], references: [id])
   activity        Activity      @relation(fields: [idActivity], references: [id])
+  activityDay     ActivityDay   @relation(fields: [idActivityDay], references: [id])
 }
 
 model Subscription{

@@ -21,6 +21,7 @@
       "@Account/*": ["src/account/*"],
       "@Activity/*": ["src/activity/*"],
       "@ActivityDay/*": ["src/activity-day/*"],
+      "@ActivityXuser/*": ["src/activity-x-user"],
       "@Auth/*": ["src/auth/*"],
       "@Constants/*": ["src/constants/*"],
       "@Decorators/*": ["src/decorators/*"],
