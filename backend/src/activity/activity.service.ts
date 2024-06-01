@@ -64,7 +64,10 @@ export class ActivityService {
 
   async create(data: ActivityCreateDTO): Promise<Activity> {
     return this.prisma.activity.create({
-      data,
+      data: {
+        occupiedQuotas: 0,
+        ...data,
+      },
     });
   }
 

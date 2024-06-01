@@ -24,10 +24,6 @@ export class ActivityCreateDTO {
   @IsNumber()
   @IsNotEmpty()
   quotas: number;
-
-  @IsNumber()
-  @IsNotEmpty()
-  occupiedQuotas: number;
 }
 
 export class ActivityUpdateDTO {
@@ -55,7 +51,5 @@ export class ActivityUpdateDTO {
   @IsOptional()
   quotas?: number;
 
-  @IsNumber()
-  @IsOptional()
   occupiedQuotas?: number;
 }
