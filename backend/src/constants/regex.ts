@@ -10,3 +10,7 @@ export const matchKey = (key: string) => {
 export const HOUR12FORMAT = /^(0[1-9]|1[0-2]):[0-5][0-9](AM|PM)$/;
 
 export const HOUR24FORMAT = /^([01][0-9]|2[0-3]):[0-5][0-9]$/;
+
+export const numbers = (length: number) => {
+  return new RegExp(`^[0-9]{${length}}$`);
+};
