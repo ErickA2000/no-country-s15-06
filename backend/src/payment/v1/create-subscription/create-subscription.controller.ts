@@ -87,7 +87,7 @@ export class CreateSubscriptionController {
 
             const createdSubscription = await this.subscriptionService.add({
               idMembership: data.idMembership,
-              idSubscriptionProvider: data.idPlanProvider,
+              idSubscriptionProvider: res.id,
               subscriptionProvider: 'paypal',
               idUser: req.user['user'],
               startDate: res.start_time,
