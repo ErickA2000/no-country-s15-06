@@ -1,4 +1,5 @@
 import { IsPassword } from '@Decorators/password.decorator';
+import { IsStringCustom } from '@Decorators/string-custom.decorator';
 import {
   IsEmail,
   IsNotEmpty,
@@ -42,11 +43,13 @@ export class RegisterDTO {
   @IsString()
   @IsOptional()
   @MinLength(3)
+  @IsStringCustom(3, 10)
   firstName?: string;
 
   @IsString()
   @IsOptional()
   @MinLength(3)
+  @IsStringCustom(3, 10)
   lastName?: string;
 
   @IsString()

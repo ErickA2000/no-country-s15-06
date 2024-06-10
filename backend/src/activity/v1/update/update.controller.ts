@@ -27,6 +27,7 @@ export class UpdateController {
         name: data.name,
         idMembership: data.idMembership,
         idInstructor: data.idInstructor,
+        image: data.image,
         description: data.description,
         location: data.location,
         quotas: data.quotas,

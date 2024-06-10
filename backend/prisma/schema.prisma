@@ -75,7 +75,8 @@ model Activity{
   id              String          @id @default(uuid())
   name            String
   idMembership    String
-  idInstructor    String          
+  idInstructor    String     
+  image           String?     
   location        String
   description     String
   quotas          Int

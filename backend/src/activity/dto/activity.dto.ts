@@ -1,4 +1,10 @@
-import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
+import {
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  IsString,
+  IsUrl,
+} from 'class-validator';
 
 export class ActivityCreateDTO {
   @IsString()
@@ -12,6 +18,11 @@ export class ActivityCreateDTO {
   @IsString()
   @IsNotEmpty()
   idInstructor: string;
+
+  @IsNotEmpty()
+  @IsString()
+  @IsUrl()
+  image: string;
 
   @IsString()
   @IsNotEmpty()
@@ -38,6 +49,11 @@ export class ActivityUpdateDTO {
   @IsString()
   @IsOptional()
   idInstructor?: string;
+
+  @IsOptional()
+  @IsString()
+  @IsUrl()
+  image?: string;
 
   @IsString()
   @IsOptional()
