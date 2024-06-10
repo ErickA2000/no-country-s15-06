@@ -2,6 +2,7 @@ import { IsPassword } from '@Decorators/password.decorator';
 import {
   IsEmail,
   IsNotEmpty,
+  IsNumberString,
   IsOptional,
   IsString,
   MaxLength,
@@ -47,6 +48,7 @@ export class RegisterDTO {
   @IsOptional()
   @MinLength(7)
   @MaxLength(9)
+  @IsNumberString()
   dni?: string;
 
   @IsString()

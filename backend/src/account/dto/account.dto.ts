@@ -1,7 +1,9 @@
 import { IsPassword } from '@Decorators/password.decorator';
+import { IsStringCustom } from '@Decorators/string-custom.decorator';
 import {
   IsEmail,
   IsNotEmpty,
+  IsNumberString,
   IsOptional,
   IsString,
   MaxLength,
@@ -32,17 +34,20 @@ export class AccountCreateDTO {
 
   @IsString()
   @MinLength(3)
+  @IsStringCustom(3, 10)
   firstName: string;
 
   @IsString()
   @IsOptional()
   @MinLength(3)
+  @IsStringCustom(3, 10)
   lastName?: string;
 
   @IsString()
   @IsOptional()
   @MinLength(7)
   @MaxLength(9)
+  @IsNumberString()
   dni?: string;
 
   @IsString()
@@ -98,17 +103,20 @@ export class AccountCreateByAdminDTO {
 
   @IsString()
   @MinLength(3)
+  @IsStringCustom(3, 10)
   firstName: string;
 
   @IsString()
   @IsOptional()
   @MinLength(3)
+  @IsStringCustom(3, 10)
   lastName?: string;
 
   @IsString()
   @IsOptional()
   @MinLength(7)
   @MaxLength(9)
+  @IsNumberString()
   dni?: string;
 
   @IsString()
