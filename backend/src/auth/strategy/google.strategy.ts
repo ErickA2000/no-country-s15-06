@@ -13,7 +13,7 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
       clientID: google['clientId'],
       clientSecret: google['secret'],
       //* Cambiar el url /api/v1 cuando se este utilizando con el frontend
-      callbackURL: configService.get('client_url') + '/auth/google/callback',
+      callbackURL: configService.get('client_url') + '/auth/login',
       scope: ['email', 'profile'],
     });
   }
