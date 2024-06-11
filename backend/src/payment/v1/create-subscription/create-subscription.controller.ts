@@ -2,11 +2,13 @@ import { PaymentService } from '@Constants/enums';
 import { PRINCIPAL_PATHS } from '@Constants/routes';
 import { Roles } from '@Decorators/role.decorator';
 import { FullSubscription } from '@Interfaces/subscription.interface';
+import { MembershipService } from '@Membership/membership.service';
 import { PaymentDTO } from '@Payment/dto/payment.dto';
 import { PaypalError } from '@Payment/errors/paypal';
 import { PaypalService } from '@Payment/services/paypal/paypal.service';
 import { SubscriptionService } from '@Subscription/subscription.service';
 import {
+  BadRequestException,
   Body,
   Controller,
   HttpException,
@@ -25,6 +27,7 @@ export class CreateSubscriptionController {
   constructor(
     private readonly paypalService: PaypalService,
     private readonly subscriptionService: SubscriptionService,
+    private readonly membershipService: MembershipService,
   ) {}
 
   @Roles('member')
@@ -33,9 +36,26 @@ export class CreateSubscriptionController {
     if (data.service === PaymentService.PAYPAL) {
       let foundSubscription: FullSubscription;
       try {
+        const foundMembership = await this.membershipService.findById(
+          data.idMembership,
+        );
+        if (foundMembership === null) {
+          throw new Error('null-membership');
+        }
+        if (foundMembership.idPlanProvider !== data.idPlanProvider) {
+          throw new Error('null-membership');
+        }
+
         foundSubscription = await this.subscriptionService.findByIdUser(
           req.user['user'],
         );
+
+        if (
+          foundSubscription.idMembership === data.idMembership &&
+          foundSubscription.membership.idPlanProvider === data.idPlanProvider
+        ) {
+          throw new Error('subscribed');
+        }
 
         if (foundSubscription && foundSubscription.pay_link != null) {
           return {
@@ -44,6 +64,21 @@ export class CreateSubscriptionController {
           };
         }
       } catch (error) {
+        if (error instanceof Error) {
+          if (error.message === 'subscribed') {
+            throw new BadRequestException({
+              success: false,
+              message: 'You are already subscribed to this membership',
+            });
+          }
+
+          if (error.message === 'null-membership') {
+            throw new BadRequestException({
+              success: false,
+              message: 'Membership not found',
+            });
+          }
+        }
         throw new InternalServerErrorException({
           success: false,
           message: error.message,
