@@ -51,6 +51,7 @@ export class CreateSubscriptionController {
         );
 
         if (
+          foundSubscription &&
           foundSubscription.idMembership === data.idMembership &&
           foundSubscription.membership.idPlanProvider === data.idPlanProvider
         ) {
