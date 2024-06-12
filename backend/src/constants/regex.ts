@@ -16,5 +16,5 @@ export const numbers = (length: number, lengthEnd?: number) => {
 };
 
 export const string = (lengthStart: number, lengthEnd: number) => {
-  return new RegExp(`^[a-zA-Z]{${lengthStart},${lengthEnd}}$`);
+  return new RegExp(`^[a-zA-Z ]{${lengthStart},${lengthEnd}}$`);
 };
