@@ -33,8 +33,8 @@ export class PaypalService {
         brand_name: 'Club X',
         user_action: 'SUBSCRIBE_NOW',
         shipping_preference: 'SET_PROVIDED_ADDRESS',
-        return_url: `${this.client_url}/capture/paypal`,
-        cancel_url: `${this.client_url}/subscriptions/cancel`,
+        return_url: `${this.client_url}/dashboard/payment/success`,
+        cancel_url: `${this.client_url}/dashboard/selectMembershipType`,
       },
     };
 
