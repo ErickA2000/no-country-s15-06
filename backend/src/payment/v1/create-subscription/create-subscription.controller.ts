@@ -53,7 +53,8 @@ export class CreateSubscriptionController {
         if (
           foundSubscription &&
           foundSubscription.idMembership === data.idMembership &&
-          foundSubscription.membership.idPlanProvider === data.idPlanProvider
+          foundSubscription.membership.idPlanProvider === data.idPlanProvider &&
+          foundSubscription.state === 'active'
         ) {
           throw new Error('subscribed');
         }
