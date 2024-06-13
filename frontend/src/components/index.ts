@@ -17,6 +17,7 @@ export { SuccessComponent } from "./SuccessfulComponent/SuccessComponent";
 export { ButtonBack } from "./ui/buttonBack/ButtonBack";
 export { ButtonLogout } from "./ui/buttonLogout/ButtonLogout";
 export { Sidebar } from "./ui/sidebar/Sidebar";
+export { SidebarMenuItem } from "./ui/sidebar/SidebarMenuItem";
 export { SliderSection } from "./ui/slider/SliderSection";
 export { TopMenu } from "./ui/topMenu/TopMenu";
 

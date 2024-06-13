@@ -3,7 +3,7 @@ import Link from "next/link"
 import { BiCategory } from "react-icons/bi"
 import { DiAptana } from "react-icons/di"
 import { FiServer } from "react-icons/fi"
-import { ButtonLogout } from "@/components"
+import { ButtonLogout, SidebarMenuItem } from "@/components"
 import { CiLogout } from "react-icons/ci"
 import { GoPaste } from "react-icons/go"
 
@@ -33,7 +33,7 @@ export const Sidebar = () => {
 
   return (
     <aside className="ml-[-100%] fixed z-10 top-0 pb-3 px-6 w-full flex flex-col justify-between h-screen border-r bg-[#175F70] transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%]">
-      <div className="w-full h-full py-6 text-white relative">
+      <div className="w-full h-full py-4 text-white relative">
         <Link href="/">
           <Image
             src="/images/StAnaLogo.png"
@@ -45,12 +45,7 @@ export const Sidebar = () => {
         <ul>
           {
             navLinks.map((link, index) => (
-              <li key={index} className='flex items-center justify-between rounded-2xl px-2 py-5 text-xl font-medium hover:bg-[#92D8E8]'>
-                <Link href={link.url} className='flex items-center'>
-                  <span className='mr-5'>{link.icon}</span>
-                  <p>{link.name}</p>
-                </Link>
-              </li>
+              <SidebarMenuItem key={index} url={link.url} icon={link.icon} name={link.name} />
             ))
           }
         </ul>

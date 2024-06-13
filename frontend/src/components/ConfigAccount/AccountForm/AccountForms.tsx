@@ -132,8 +132,7 @@ function AccountForms({ data }: AccountFormProps) {
 
   const handleCancelSubscription = async () => {
     const rta = await cancelSubscription()
-
-    console.log(rta)
+    // console.log(rta)
   }
 
   return (
