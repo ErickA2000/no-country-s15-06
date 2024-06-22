@@ -1,0 +1,16 @@
+.mySwiper{
+width: 100%; 
+min-height:454px;
+
+    
+}
+
+
+  
+.mySwiperSlide {
+  display:flex;
+ justify-content: center;
+ align-items:center;
+ height: 100%;
+    
+  }

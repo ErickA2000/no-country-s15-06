@@ -1,0 +1,8 @@
+.customBullet li {
+    list-style-type: none; /* Elimina los bullets predeterminados */
+}
+
+.customBullet li::before {
+    content: "✔"; /* Agrega el símbolo de verificación antes de cada elemento de la lista */
+    margin-right: 10px; /* Agrega un margen a la derecha del símbolo de verificación */
+}

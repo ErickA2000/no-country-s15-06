@@ -1,0 +1,105 @@
+/* CustomSwitch.module.css */
+.customSwitch{
+  display: flex;
+  align-self: center;
+}
+
+.base {
+    width: 271px; /* Ajusta el tamaño según sea necesario */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    max-width:none;
+  }
+  
+  .wrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 0px;
+    padding: 8px;
+    border-radius: 25px;
+    overflow: hidden;
+    border: 1px solid #FF7F00;
+    background-color:transparent;
+
+
+  }
+  
+  .thumb {
+    width: 50%;
+    height: 100%;
+    border-radius: 20px;
+    padding: 5px;
+    background-color: white;
+    transition: transform 0.3s; /* Añade una transición suave */
+  }
+
+  .customThumb {
+    color:#FF7F00;
+}
+  
+  
+  .startContent {
+    font-size: 0.875rem;
+    text-align: center;
+    width: 50%;
+    z-index: 1;
+    pointer-events: none; /* Evita que las etiquetas interfieran con el clic del switch */
+    position: absolute;
+    left: 0;
+    background-color: transparent;
+    color:#A1A1AA;
+    
+  }
+
+  .endContent {
+    font-size: 0.875rem;
+    text-align: center;
+    width: 50%;
+    z-index: 1;
+    color:#A1A1AA;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    transition: opacity 0.3s; /* Añade una transición para la opacidad */
+  }
+  
+  
+  .base[data-state="checked"] {
+    background-color:blue;
+  }
+  
+  .base[data-selected="true"] .thumb {
+    transform: translateX(80%); /* Mueve el thumb completamente a la derecha */
+    
+  }
+  
+  .base[data-selected="true"] .startContent {
+    opacity: 1; /* Oculta el startContent cuando está seleccionado */
+    
+  }
+  
+  .base[data-selected="true"] .endContent {
+    opacity: 1; /* Muestra el endContent cuando está seleccionado */
+  }
+  .base[data-selected="true"] .wrapper {
+    opacity: 1; /* Muestra el endContent cuando está seleccionado */
+    background-color: transparent;
+  }
+  
+  .base[data-selected="false"] .startContent {
+    opacity: 1; /* Muestra el startContent cuando no está seleccionado */
+    background-color: transparent;
+  }
+  
+  .base[data-selected="false"] .endContent {
+    opacity: 0; /* Oculta el endContent cuando no está seleccionado */
+  }
+
+    .base[data-selected="false"] .endContent {
+    opacity: 0; /* Oculta el endContent cuando no está seleccionado */
+  }
+  
